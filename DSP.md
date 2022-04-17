@@ -1,10 +1,10 @@
 # Dokument Specifikace Požadavků
-## Covid-19 Tracker - Škrbel, Novotný, Schönherr, Vican
+## Bot-responder
 
 - Verze 1.0
-- Připravil Vít Škrbel
+- Připravil Pavel Vican
 - FM TUL
-- 20\. 4\. 2021
+- 17.04.2022
 
 Obsah
 =================
@@ -34,16 +34,17 @@ Obsah
 
 ## 1. Úvod
 ### 1.1 Účel Dokumentu
-Účelem tohoto dokumentu je představit detailní popis Covid-19 Trackeru. Vysvětlí účel a funkce programu, jeho rozhraní, podmínky za kterých musí pracovat a jak bude reagovat na externí podněty. Dokument je určen pro vývojáře a bude navrhnut zákazníkovi ke schválení.
+Účelem tohoto dokumentu je představit detailní popis simulate tzv. botů. Vysvětlí účel a funkce programu, jeho rozhraní, podmínky za kterých musí pracovat a jak bude reagovat na externí podněty. Dokument je určen pro vývojáře a bude navrhnut zákazníkovi ke schválení.
 
 ### 1.2 Rozsah Programu
-Program bude sloužit ke sledování vybraných informací o nemoci Covid-19. Bude navržen tak, aby požadované informace byly přehledně zobrazeny. Specificky bude program porovnávat data z českých a zahraničních zdrojů a zobrazovat rozdíly mezi nimi, pokud takové rozdíly existují. Tyto informace bude program ukládat do lokální relační databáze.
+Program ude navržen tak, aby požadované informace byly přehledně zobrazeny. Bude zobrazovat na klientské části formu komunikace se serverovou částí a také zobrazovat její odpověď ve formátu HTML. 
+Serverová část zpracovává požadavky části klientské s následujícími informacemi: Jaký je čas, jak se jmenuje (BOT-serverová část) a aktuální kurz EUR-CZK.
 
 ### 1.3 Glosář
 | Pojem | Definice |
 | --- | ---|
 | Dokument specifikace požadavků | Dokument popisující všechny funkce navrženého programu a omezení ve kterých musí pracovat. Například tento dokument | 
-| Covid-19 | Covid-19 z anglického spojení coronavirus disease 2019 je vysoce infekční onemocnění, které je způsobeno koronavirem SARS-CoV-2. První případ byl identifikován v čínském Wu-chanu v prosinci 2019. Od té doby se virus rozšířil po celém světě, což způsobilo přetrvávající pandemii.  |
+| Bot | internetový bot – počítačový program, který vykonává automatizovanou činnost na internetu. Význam se může přenést i mimo internet na měřítko počítačových sítí. |
 
 ### 1.4 Zdroje
 IEEE 830-1998, 1998. *IEEE Recommended Practice for Software Requirements Specifications.* New York, US: The Institute of Electrical and Electronics Engineers.
@@ -53,109 +54,71 @@ Následující kapitola, Celkový popis, tohoto dokumentu poskytuje přehled fun
 
 ## 2. Celkový popis
 ### 2.1 Prostředí Programu
-![Prostředí programu](https://i.imgur.com/zZsgU2l.png "Prostředí programu")
+![Prostředí programu](https://imgur.com/a/NqpN4hc "Prostředí programu")
 *Obrázek 1 - Prostředí programu*
 
-Program má jednoho aktéra, uživatele, který k systému přistupuje přímo. Uživatel může zvolit, která data chce zobrazit a může provést manuální aktualizaci zobrazovaných dat.
+Program má jednoho aktéra, uživatele, který k systému přistupuje přímo. Uživatel má možnost pomocí tlačítka poslat zprávu vzdálenému systému a obdržet od něj odpověď se zadanými parametry. Parametry jsou určeny v dotazu a server na ně odpoví buď konkrétní odpovědí nebo odešle chybovou hlášku.
 
 ### 2.2 Funkční Požadavky
 Tato sekce blíže popisuje jednotlivé případy použití programu. 
 
 #### 2.2.1 Případ použití: **Zobrazení dat**
 ##### Diagram:
-![Diagram Zobrazení dat](https://i.imgur.com/R78R8BD.png "Diagram Zobrazení dat")
+![Diagram Zobrazení dat](https://imgur.com/a/CiD5jql "Diagram Zobrazení dat")
 ##### Krátký popis:
-Uživatel si zvolí která data chce zobrazit a upraví parametry zobrazení.
+Uživatel si zvolí která data chce zobrazit a upraví parametry zobrazení při poslání dotazu. U konkrétního obrázku chce uživatel všechny 3 údaje.
 ##### Popis kroků:
 - Uživatel si volí která data chce zobrazit.
-- Program zobrazí požadovaná data.
-- Uživatel upraví parametry zobrazení.
-- Program upraví zobrazení podle parametrů.
-##### Reference:
-
-#### 2.2.2 Případ použití: **Aktualizace dat**
-##### Diagram:
-![Diagram Aktualizace dat](https://i.imgur.com/WvbYrR0.png "Diagram Aktualizace dat")
-##### Krátký popis:
-Uživatel se rozhodne provést manuální aktualizaci dat.
-##### Popis kroků:
-- Uživatel stiskne tlačítko aktualizace dat.
-- Program zkontroluje zda je k dispozici aktualizace.
-  - Pokud existuje aktualizace program provede aktuazlizaci zobrazení
-  - Pokud neexistuje aktualizace program upozorní uživatele.
+- Uživatel pak klikne na tlačítko Odeslat
+- Program pošle data uživateli.
+- Program zobrazí data dle výsledků (při nedostupnosti -> chyba - "N/A" - není dostupné)
 ##### Reference:
 
 ### 2.3 Charakteristiky Uživatelů
-Od uživatele se očekává základní znalost použití programů v Microsoft Windows. Dále se také očekává znalost čtení grafů a použítí ovládacích prvků jako jsou tlačítka, rozbalovací nabídky apod.
+Od uživatele se očekává základní znalost použití programů v Microsoft Windows.
 
 ### 2.4 Doplňkové Požadavky
-Program poběží na počítači s operačním systémem Windows 10 a připojením k Internetu přes síť TUL. Počítač bude mít nainstalován framework .NET 5, který bude dodán společně s programem. Databázi bude spravovat program sám a není k ní nutné instalovat žádný další software.
+uživatelská část programu poběží na počítači uživatele s operačním systémem Windows 10 a připojením k internetu. Počítač bude mít nainstalován Node.js 16.14.2+.
+"Vzdálená" serverová část programu poběží na jiném hostiteli (lze i virtuální počítač?) mimo uživatele a bude potřebovat mít nainstalován Python 3+ (verzi Python 3.8.2 například) a k němu Flask 2.1.1.
 
 ## 3. Specifikace Požadavků
 ### 3.1 Externí Rozhraní
 Tato sekce popisuje všechny vstupně výstupní požadavky a řešení programu.
 
 #### 3.1.1 Uživatelské Rozhraní
-Uživatelské rozhraní bude řešeno pomocí WPF. V rozhraní bude možné přepínat mezi dvěma taby pomocí prvku TabControl. Ve spodní části okna bude ProgressBar aktualizace dat, tlačítko pro manuální aktualizaci dat a tetxtovou reprezentaci aktuálního stavu programu. V pravém horním rohu bude umístěn prvek na vybrání dne, pro který se mají data zobrazovat.
+Uživatelské rozhraní bude vytvořeno pomocí frameworku React.js (Javascript) pro zařízení webového GUI. Program bude mít tick-boxy pro jednotlivé požadavky které se pošlou kliknutím na tlačítko.
 
-První tab bude zobrazovat porovnání dat o nakažených nemocí Covid-19 v ČR. Toho dosáhne ListBoxem, ve kterém bude možné zvolit, která data se mají zobrazit k porovnání v grafu nad ním. Může se tedy zobrazit buď graf celkového počtu nakažených, či nově nakažených. Data která se budou zobrazovat v grafu nebudou záležet na vybraném datumu, zobrazí se celé období dat v databázi.
-![Uživatelské rozhraní 1](https://i.imgur.com/UkWErCk.png "Uživatelské rozhraní 1")
-
-Druhý tab zobrazuje porovnání ČR a až čtyř dalších zemí v grafu. Požadované země se dají zvolit v ListBoxu, ve kterém se dá vyhledávat pomocí vyhledávacího políčka nad ním.
-![Uživatelské rozhraní 2](https://i.imgur.com/lpkEzCT.png "Uživatelské rozhraní 2")
+![Uživatelské rozhraní 1](https://imgur.com/a/1bBzFZ4 "Uživatelské rozhraní")
 
 #### 3.1.2 Softwarové Rozhraní
-Aplikace bude porovnávat datové sady uložené v SQLite databázi ve složce ze které je spuštěn program. Data v této aplikaci bude získávat ze dvou zdrojů. Aplikace bude logovat chyby a informace na **[webhook Telegram bota](https://core.telegram.org/bots/api)**. Logy bude odesílat po každé aktualizaci dat, či nastalé chybě. Kontrola, zda jsou nová data pro aktualizaci bude probíhat vždy ve stanovený časový úsek v intervalech 5 minut. Identické logy se budou ukládat také do lokálního souboru ve složce aplikace v případě výpadku internetového připojení. Po obnovení připojení se odešle celý logovací soubor.
+Back end bude z uživatelské strany dostávat dotaz s parametry určenými uživatelem a server se na ně pokusí odpovědět, pokud z nějakého důvodu nebude moct odpovědět na všechny parametry v dotazu (například nebude moct získat kurz CZK-EUR) tak místo dané hodnoty pošle NULL hodnotu (či jinou hodnotu reprezentující dostání "ničeho") a GUI uživatele to zpracuje jako nedostupnou informaci.
 
 Zdroje dat:
-* ##### **[MZČR Základní Přehled](https://onemocneni-aktualne.mzcr.cz/api/v2/covid-19/zakladni-prehled.json)**
+* ##### **[Zdarma API pro získávání Forex kurzů](https://free.currencyconverterapi.com/)**
   ###### Formát dat: JSON
   ![Schéma dat](https://i.imgur.com/iyTW6M1.png "Schéma dat")
-  ###### Čas aktualizace: ~7:00 – 9:00 CET 
-  ###### Krátký popis: Stručný náhled na základní epidemiologická data o pandemii COVID-19 v ČR. Datová sada obsahuje aktuální kumulativní počet provedených PCR a antigenních testů (včetně informace za předchozí den), potvrzené případy celkem a ve věkové skupině 65+(včetně informace za předchozí den), aktivní případy, vyléčené, úmrtí, očkování a hopitalizované pacienty.
-  
-* ##### **[MZČR Přehled vykázaných očkování podle krajů ČR](https://onemocneni-aktualne.mzcr.cz/api/v2/covid-19/ockovani.json)**
-  ###### Formát dat: JSON
-  ![Schéma dat](https://i.imgur.com/pzvLXsj.png "Schéma dat")
-  ###### Čas aktualizace: ~7:00 – 9:00 CET 
-  ###### Krátký popis: Datová sada poskytuje agregovaná data o vykázaných očkováních na úrovni krajů ČR. Každý řádek přehledu popisuje počet vykázaných očkování v daném dni, za věkovou skupinu, s použitím vybrané očkovací látky a ve vybraném kraji. Za jeden den tedy přehled obsahuje maximálně X řádků, kde X = počet krajů (14) x počet věkových skupin (15) x počet druhů očkovacích látek (v okamžik publikace 2) = 630. Data jsou aktualizována k času 20.00 h předchozího dne a mohou se zpětně mírně měnit z důvodu průběžného doplňování.
-
-* ##### **[WHO Denní Přehled Nakažených a Mrtvých](https://covid19.who.int/WHO-COVID-19-global-data.csv)**
-  ###### Formát dat: CSV
-  ![Schéma dat](https://i.imgur.com/pVPPC6V.png "Schéma dat")
-  ###### Čas aktualizace: ~0:00 – 2:00 CET 
-  ###### Datová sada o připadech Covid-19 nahlášených WHO.
-
-* ##### **[WHO Data o Vakcínách](https://covid19.who.int/who-data/vaccination-data.csv)**
-  ###### Formát dat: CSV
-  ![Schéma dat](https://i.imgur.com/frf38zN.png "Schéma dat")
-  ###### Čas aktualizace: ~0:00 – 2:00 CET 
-  ###### Datová sada o vakcinaci proti Covid-19 od WHO.
+  ###### Krátký popis: Jednoduché *neplacené* API pro získání kurzu požadovaných měn. API má limit 100 požadavků za hodinu jenž je více než dostatečné pro zákazníka potřebu.
 
 Použité nástroje a software:
 * ##### **Microsoft Windows**
   ###### Verze: 19H2 (18363) - 20H2 (19042)
   ###### Zvolený operační systém nutný pro běh programu.
 
-* ##### **.NET 5**
+* ##### **Python **
+  ###### Verze: 3.8.2
+  ###### Zvolený jazyk pro back end. Pravděpodobně může být jakákoliv verze 3.+
+
+* ##### **[Flask](https://pypi.org/project/Flask/)**
+  ###### Verze: 2.1.1
+  ###### Flask je framework pro webové aplikace založený na Python jazyce. Slouží jako back-end.
+
+* ##### **[React](https://reactjs.org/)**
   ###### Verze: 5.0.5
-  ###### Zvolený framework, který bude nainstalován společně s aplikací.
+  ###### Javascript knihovna. React je využíván pro tvorbu uživatelských rozhraní, tedy front end pro uživatele. Závislá na Node.js 14+ verzi
 
-* ##### **C#**
-  ###### Verze: 9.0
-  ###### Zvolený programovací jazyk.
-
-* ##### **[Microsoft.EntityFrameworkCore.Sqlite](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Sqlite/)**
-  ###### Verze: 5.0.5
-  ###### Zvolený databázový systém a ORM pro ukládání dat.
-
-* ##### **[Newtonsoft.Json](https://www.nuget.org/packages/Newtonsoft.Json/)**
-  ###### Verze: 13.0.1
-  ###### Nástroj pro zpracování dat ve formátu JSON.
- 
-* ##### **[LiveCharts](https://github.com/beto-rodriguez/LiveCharts2)**
-  ###### Verze: 2
-  ###### Nástroj pro zpracování dat ve formátu JSON.
+* ##### **[Node.js](https://nodejs.org/en/)**
+  ###### Verze: 16.2.2
+  ###### Softwarový systém pro vývoj internetových aplikaci. V našem případě je potřeba pro React vývoj kvůli závislostem.
 
 #### 3.1.3 Hardwarové Požadavky
 Počítač by měl být splňovat alespoň **[základní požadavky pro běh systému Windows 10](https://support.microsoft.com/cs-cz/windows/po%C5%BEadavky-na-syst%C3%A9m-windows-10-6d4e9a79-66bf-7950-467c-795cf0386715)** a být připojen k internetu.
@@ -164,30 +127,20 @@ Počítač by měl být splňovat alespoň **[základní požadavky pro běh sys
 | Případ použití  | Zobrazení dat |
 | --- | --- | 
 | Událost | Uživatel zvolí, která data chce zobrazit | 
-| Základní postup | 1. Uživatel zvolí jeden z tabů 2. Aplikace vyhledá data pro daný tab v databázi a vykreslí je 3. Uživatel zvolí data, která chce porovnat v grafu 4. Aplikace vyhledá data a vykreslí je do grafu | 
-| Alternativní postup | Pokud v 1. kroku aplikace nenajde v databázi vhodná data, načte do ní nová data ze zdrojů | 
-
-| Případ použití  | Aktualizace dat |
-| --- | --- | 
-| Událost | Uživatel stiskne tlačítko pro manuální aktualizaci dat | 
-| Základní postup | 1. Uživatel stiskne tlačítko manuální aktualizace 2. Aplikace stáhne data ze zdojů a porovná je s daty v databázi 3a. Pokud jsou data novější, aplikace zpracuje data a přidá je do databáze 3b. Pokud novější data nejsou k dispozici aplikace nic neudělá a pokračuje dále v činnosti | 
-
-### 3.3 Detailní Doplňkové Požadavky
-![Schéma databáze](https://i.imgur.com/ZVhsaSZ.png "Schéma databáze")
-*Logické schéma dat*
+| Základní postup | 1. Uživatel zaškrtne data, která chce zobrazit. 2. Klikne na tlačítko a počká na výsledek od serveru. 3. Data se zobrazí jako odpověď serveru | 
 
 #### 3.3.1 Bezpečnost
-Uživatel má přístup pouze k zobrazování a aktualizace dat, není tedy možný z jeho strany útok na integritu dat. 
-Přístup k datovým serverům je zařízen pomocí HTTPS dotazů. Pokud server nepředá "škodlivé" informace, nemělo by se být čeho bát.
+Uživatel má přístup pouze k zobrazování dat, není tedy možný z jeho strany útok na integritu dat. 
+Pokud server nepředá "škodlivé" informace, nemělo by se být čeho bát.
 
 #### 3.3.2 Spolehlivost
-Aplikace musí běžet alespoň týden bez vnějšího podnětu, automaticky aktualizovat data a ta následně zobrazovat.
+Aplikace musí běžet bez vnějšího podnětu.
 
 #### 3.3.3 Dostupnost
-Aplikace musí být neustále dostupná, i v případě výpadku internetového připojení. Pokud nemůže aplikace data stáhnout musí být stále schopna zobrazovat již stažená data. Aplikace nebude připojení kontrolovat neustále, ale až poté co po manuální či automatické aktualizaci zjistí, že nemá připojení k internetu. Tato kontrola bude probíhat každých 10 minut pomocí **[této metody.](https://stackoverflow.com/a/44025507)** Po získání připojení k internetu aplikace provede aktualizaci mimo dané termíny.
+Aplikace je dostupná celý čas spuštění. Pokud nebude přístup k internetu, tak nemá šanci získat z vnějšku požadované informace. Bude tedy hlásit nedostupnost k serveru uživateli.
 
 #### 3.3.4 Časová náročnost
-Odhad doby tvorby aplikace je zhruba 120 hodin.
+Odhad tvorby aplikace je přibližně 60 hodin
 
 #### 3.3.5 Uzávěrka
 Týden před zkouškou :D
