@@ -54,7 +54,7 @@ Následující kapitola, Celkový popis, tohoto dokumentu poskytuje přehled fun
 
 ## 2. Celkový popis
 ### 2.1 Prostředí Programu
-![Prostředí programu](https://imgur.com/a/NqpN4hc "Prostředí programu")
+![Prostředí programu](https://imgur.com/DyqNoKW "Prostředí programu")
 *Obrázek 1 - Prostředí programu*
 
 Program má jednoho aktéra, uživatele, který k systému přistupuje přímo. Uživatel má možnost pomocí tlačítka poslat zprávu vzdálenému systému a obdržet od něj odpověď se zadanými parametry. Parametry jsou určeny v dotazu a server na ně odpoví buď konkrétní odpovědí nebo odešle chybovou hlášku.
@@ -64,7 +64,7 @@ Tato sekce blíže popisuje jednotlivé případy použití programu.
 
 #### 2.2.1 Případ použití: **Zobrazení dat**
 ##### Diagram:
-![Diagram Zobrazení dat](https://imgur.com/a/CiD5jql "Diagram Zobrazení dat")
+![Diagram Zobrazení dat](https://imgur.com/GTJjsYh "Diagram Zobrazení dat")
 ##### Krátký popis:
 Uživatel si zvolí která data chce zobrazit a upraví parametry zobrazení při poslání dotazu. U konkrétního obrázku chce uživatel všechny 3 údaje.
 ##### Popis kroků:
@@ -88,7 +88,7 @@ Tato sekce popisuje všechny vstupně výstupní požadavky a řešení programu
 #### 3.1.1 Uživatelské Rozhraní
 Uživatelské rozhraní bude vytvořeno pomocí frameworku React.js (Javascript) pro zařízení webového GUI. Program bude mít tick-boxy pro jednotlivé požadavky které se pošlou kliknutím na tlačítko.
 
-![Uživatelské rozhraní 1](https://imgur.com/a/1bBzFZ4 "Uživatelské rozhraní")
+![Uživatelské rozhraní 1](https://imgur.com/oe98G6y "Uživatelské rozhraní")
 
 #### 3.1.2 Softwarové Rozhraní
 Back end bude z uživatelské strany dostávat dotaz s parametry určenými uživatelem a server se na ně pokusí odpovědět, pokud z nějakého důvodu nebude moct odpovědět na všechny parametry v dotazu (například nebude moct získat kurz CZK-EUR) tak místo dané hodnoty pošle NULL hodnotu (či jinou hodnotu reprezentující dostání "ničeho") a GUI uživatele to zpracuje jako nedostupnou informaci.
@@ -96,8 +96,8 @@ Back end bude z uživatelské strany dostávat dotaz s parametry určenými uži
 Zdroje dat:
 * ##### **[Zdarma API pro získávání Forex kurzů](https://free.currencyconverterapi.com/)**
   ###### Formát dat: JSON
-  ![Schéma dat](https://i.imgur.com/iyTW6M1.png "Schéma dat")
-  ###### Krátký popis: Jednoduché *neplacené* API pro získání kurzu požadovaných měn. API má limit 100 požadavků za hodinu jenž je více než dostatečné pro zákazníka potřebu.
+  ![Schéma dat](https://imgur.com/RkHBNUI "Schéma dat")
+  ###### Krátký popis: Jednoduché *neplacené* API pro získání kurzu požadovaných měn. API má limit 100 požadavků za hodinu, 250/měsíc jenž je více než dostatečné pro zákazníka potřebu.
 
 Použité nástroje a software:
 * ##### **Microsoft Windows**
