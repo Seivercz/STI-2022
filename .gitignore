@@ -1,5 +1,3 @@
 frontend/node_modules/
 .idea/
-backend/Lib
-backend/Scripts
-backend/pyvenv.cfg
+backend/venve
