@@ -32,7 +32,8 @@ def get_exchange_rate(rate_bool):
         # url_query = "/api/v7/convert?q={}&compact=ultra&apiKey=".format(exchange_rate_name)
         url_query = f"/api/v7/convert?q={exchange_rate_name}&compact=ultra&apiKey="
         url = "https://free.currconv.com"
-        api_request = "{}{}{}".format(url, url_query, api_key)
+        # api_request = "{}{}{}".format(url, url_query, api_key)
+        api_request = f"{url}{url_query}{api_key}"
         response = requests.get(api_request)
         if response and response.status_code == 200:
             data = response.json()
