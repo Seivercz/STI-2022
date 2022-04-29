@@ -13,19 +13,21 @@ def hello_world():
 
 
 def get_time(time_bool):
-    """From given string 1 == True returns datetime or nothing"""
+    """From given string 1 == True returns datetime or Null"""
     if time_bool == "1":
         return str(datetime.now())
     return "Null"
 
 
 def get_name(name_bool):
+    """From given string 1 == True returns name of backend or Null """
     if name_bool == "1":
         return "appBot"
     return "Null"
 
 
 def get_exchange_rate(rate_bool):
+    """Gets exchange rate from API, if failed or not wanted to give rate then return Null"""
     if rate_bool == "1":
         exchange_rate_name = "EUR_CZK"
         api_key = "ffdcf3c57840096bf1a0"
