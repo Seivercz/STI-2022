@@ -4,7 +4,7 @@ from datetime import datetime
 
 def test_get_time():
     """ test TRUE statement"""
-    assert app.get_time("1")[-4] == str(datetime.now())[-4]
+    assert app.get_time("1")[-6] == str(datetime.now())[-6]
 
 
 def test_get_time2():
