@@ -41,7 +41,7 @@ def get_exchange_rate(rate_bool):
 
 @app.route("/api/getData")
 def get_data():
-    "url for test: http://127.0.0.1:5000/api/getData?time=1&name=1&exchangeRate=0"
+    """url for test: http://127.0.0.1:5000/api/getData?time=1&name=1&exchangeRate=0"""
     time_bool = str(request.args.get("time"))
     name_bool = str(request.args.get("name"))
     rate_bool = str(request.args.get("exchangerate"))
