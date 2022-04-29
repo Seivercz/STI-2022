@@ -29,7 +29,8 @@ def get_exchange_rate(rate_bool):
     if rate_bool == "1":
         exchange_rate_name = "EUR_CZK"
         api_key = "ffdcf3c57840096bf1a0"
-        url_query = "/api/v7/convert?q={}&compact=ultra&apiKey=".format(exchange_rate_name)
+        # url_query = "/api/v7/convert?q={}&compact=ultra&apiKey=".format(exchange_rate_name)
+        url_query = f"/api/v7/convert?q={exchange_rate_name}&compact=ultra&apiKey="
         url = "https://free.currconv.com"
         api_request = "{}{}{}".format(url, url_query, api_key)
         response = requests.get(api_request)
