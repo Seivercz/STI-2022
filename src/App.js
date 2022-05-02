@@ -1,5 +1,3 @@
-
-import './App.css';
 import * as React from 'react';
 import { useState } from "react"
 
@@ -21,9 +19,6 @@ const Checkbox = ({label, id, isChecked, handleChange}) => {
         </label>
     );
 };
-const SubmitButton = ({label, id, handleChange}) => {
-
-}
 
 function App() {
     const [isChecked1, setIsChecked1] = useState(true);
@@ -56,11 +51,11 @@ function App() {
             <Checkbox label={"Kurz CZK/EUR"} id={"exchangeRate"} isChecked={isChecked3} handleChange={handleChange3} />
         </div>
         <div className="chosen-boxes">
-            Je Vybráno: {isChecked1 ? "Čas " : " "}
-                {isChecked2 ? "Jméno " : " "}
+            Je Vybráno: {isChecked1 ? "Čas, " : " "}
+                {isChecked2 ? "Jméno, " : " "}
                 {isChecked3 ? "Kurz CZK/EUR " : " "}
             <br />
-            <button type="button" value="Poslat" onClick={handleButtonClick} />
+            <button type="button" onClick={handleButtonClick}>Poslat</button>
         </div>
         </>
     );
