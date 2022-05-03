@@ -16,14 +16,14 @@ def get_time(time_bool):
     """From given string 1 == True returns datetime or Null"""
     if time_bool == "1":
         return str(datetime.now())
-    return None
+    return "Null"
 
 
 def get_name(name_bool):
     """From given string 1 == True returns name of backend or Null """
     if name_bool == "1":
         return "appBot"
-    return None
+    return "Null"
 
 
 def get_exchange_rate(rate_bool):
@@ -40,7 +40,7 @@ def get_exchange_rate(rate_bool):
         if response and response.status_code == 200:
             data = response.json()
             return str(data[exchange_rate_name])
-    return None
+    return "Null"
 
 
 @app.route("/api/getData", methods=["GET"])
