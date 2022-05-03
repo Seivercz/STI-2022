@@ -9,12 +9,12 @@ def test_get_time():
 
 def test_get_time2():
     """test FALSE statement"""
-    assert app.get_time("nothing new") == "Null"
+    assert app.get_time("nothing new") is None
 
 
 def test_get_name():
     """tests FALSE statement"""
-    assert app.get_name("nothing really") == "Null"
+    assert app.get_name("nothing really") is None
 
 
 def test_get_name2():
