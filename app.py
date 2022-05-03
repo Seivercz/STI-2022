@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, json, jsonify
 from datetime import datetime
 from flask import request
 import requests
@@ -16,14 +16,14 @@ def get_time(time_bool):
     """From given string 1 == True returns datetime or Null"""
     if time_bool == "1":
         return str(datetime.now())
-    return "Null"
+    return None
 
 
 def get_name(name_bool):
     """From given string 1 == True returns name of backend or Null """
     if name_bool == "1":
         return "appBot"
-    return "Null"
+    return None
 
 
 def get_exchange_rate(rate_bool):
@@ -40,17 +40,19 @@ def get_exchange_rate(rate_bool):
         if response and response.status_code == 200:
             data = response.json()
             return str(data[exchange_rate_name])
-    return "Null"
+    return None
 
 
-@app.route("/api/getData")
+@app.route("/api/getData", methods=["GET"])
 def get_data():
     """url for test: http://127.0.0.1:5000/api/getData?time=1&name=1&exchangeRate=0"""
-    time_bool = str(request.args.get("time"))
-    name_bool = str(request.args.get("name"))
-    rate_bool = str(request.args.get("exchangerate"))
+    time_bool = get_time(request.args.get("time"))
+    name_bool = get_name((request.args.get("name")))
+    rate_bool = get_exchange_rate(request.args.get("exchangeRate"))
+    response = jsonify({"time":time_bool, "name":name_bool, "rate":rate_bool})
 
-    return str(get_time(time_bool) + ";" + get_name(name_bool) + ";" + get_exchange_rate(rate_bool))
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    return response
 
 
 if __name__ == '__main__':
