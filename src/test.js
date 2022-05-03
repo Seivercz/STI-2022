@@ -6,6 +6,7 @@
 // import "@babel/preset-react"
 import TestRenderer from "react-test-renderer";
 import App from './App';
+
 const testRenderer = TestRenderer.create(<App />)
 const testInstance = testRenderer.root;
 
