@@ -68,8 +68,8 @@ Uživatel si zvolí která data chce zobrazit a upraví parametry zobrazení př
 Od uživatele se očekává základní znalost použití programů v Microsoft Windows.
 
 ### 2.4 Doplňkové Požadavky
-uživatelská část programu poběží na počítači uživatele s operačním systémem Windows 10 a připojením k internetu. Počítač bude mít nainstalován Node.js 16.14.2+.
-"Vzdálená" serverová část programu poběží na jiném hostiteli (lze i virtuální počítač?) mimo uživatele a bude potřebovat mít nainstalován Python 3+ (verzi Python 3.8.2 například) a k němu Flask 2.1.1.
+uživatelská část programu poběží na hostingovém serveru Heroku. uživatel nemusí mít nic dodatečného nainstalované
+Serverová část programu poběží na jiném hostiteli (ten bude potřebovat mít nainstalován Python 3+ (verzi Python 3.8.2 například) a k němu Flask 2.1.1.
 
 ## 3. Specifikace Požadavků
 ### 3.1 Externí Rozhraní
