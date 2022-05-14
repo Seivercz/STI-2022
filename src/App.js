@@ -157,7 +157,7 @@ function App() {
                 {isChecked3 ? "Kurz CZK/EUR " : " "}
                 {isChecked4 ? "Doporučení koupě EUR " : " "}
             <br />
-            <button type="button" onClick={handleButtonClick}>Poslat</button>
+            <button id="send" type="button" onClick={handleButtonClick}>Poslat</button>
             <button type="button" onClick={handleButtonClear}>Clear historie</button>
         </div>
             {/*{responseComponents.map((item) => (*/}

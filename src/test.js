@@ -18,7 +18,7 @@ test("checkbox 1 checked",
 
 test("Button exists",
     () => {
-        expect(testInstance.findByProps({type: "button"})).toBeVisible
+        expect(testInstance.findByProps({id: "send"})).toBeVisible
     })
 
 test("checkbox 2 unchecked",
