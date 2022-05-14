@@ -97,7 +97,7 @@ def get_data():
     time_bool = get_time(request.args.get("time"))
     name_bool = get_name((request.args.get("name")))
     rate_bool = get_exchange_rate(request.args.get("exchangeRate"))
-    is_buy_recommended1, is_buy_recommended2 = get_recommendation_buy("buyRecomendation")
+    is_buy_recommended1, is_buy_recommended2 = get_recommendation_buy(request.args.get("buyRecomendation"))
     response = jsonify(
         {"time": time_bool, "name": name_bool, "rate": rate_bool, "lower_reccomended": str(is_buy_recommended1), "average_reccomended": str(is_buy_recommended2)})
 
