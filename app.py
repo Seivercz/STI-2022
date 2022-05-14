@@ -99,7 +99,7 @@ def get_data():
     rate_bool = get_exchange_rate(request.args.get("exchangeRate"))
     is_buy_recommended1, is_buy_recommended2 = get_recommendation_buy(request.args.get("buyRecomendation"))
     response = jsonify(
-        {"time": time_bool, "name": name_bool, "rate": rate_bool, "lower_reccomended": str(is_buy_recommended1), "average_reccomended": str(is_buy_recommended2)})
+        {"time": time_bool, "name": name_bool, "rate": rate_bool, "lower_recommended": str(is_buy_recommended1), "average_reccomended": str(is_buy_recommended2)})
 
     response.headers.add("Access-Control-Allow-Origin", "*")
     return response
