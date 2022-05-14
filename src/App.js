@@ -96,8 +96,8 @@ function App() {
     }
      const handleButtonClick = () => {
         let requestData = ""
-        //let requestUrl = "https://stibotbackend2022.herokuapp.com/api/getData?"
-        let requestUrl = "http://127.0.0.1:5000/api/getData?"
+        let requestUrl = "https://stibotbackend2022.herokuapp.com/api/getData?"
+        //let requestUrl = "http://127.0.0.1:5000/api/getData?"
         if (isChecked1) requestData += "time=1&"
         else requestData += "time=0&"
         if (isChecked2) requestData += "name=1&"
