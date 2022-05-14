@@ -1,14 +1,9 @@
-from flask import Flask, json, jsonify
+from flask import Flask, jsonify
 from datetime import datetime, timedelta
 from flask import request
 import requests
 
 app = Flask(__name__)
-
-
-@app.route('/')
-def hello_world():
-    return 'Hello World'
 
 
 def get_time(time_bool):
@@ -70,6 +65,12 @@ def check_limit_average_change(change):
     return {True: change} if change < 10 else {False: change}
 
 
+def process_data(data):
+    lowering_rate = calculate_rate_lowering(data)
+    average_change = check_limit_average_change(calculate_average_change(data))
+    return lowering_rate, average_change
+
+
 def get_recommendation_buy(reccomendation_bool):
     if reccomendation_bool == "0":
         return "Null", "Null"
@@ -86,10 +87,8 @@ def get_recommendation_buy(reccomendation_bool):
     response = requests.get(api_request)
 
     if response and response.status_code == 200:
-        data = response.json()
-        lowering_rate = calculate_rate_lowering(data)
-        average_change = check_limit_average_change(calculate_average_change(data))
-        return lowering_rate, average_change
+        return process_data(response.json())
+
 
 
 @app.route("/api/getData", methods=["GET"])
