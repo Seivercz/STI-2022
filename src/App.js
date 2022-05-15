@@ -38,9 +38,9 @@ function RenderServerResponse(props) {
             ""}
 
             <br/>
-            {lower_recommended==="False"  ? "Rozdíl ceny za poslední 3 dny kvůli rozdílu "+lowerReccomendedAmount+ " EUR se nedoporučuje koupě" :
+            {lower_recommended==="False"  ? "Rozdíl ceny za poslední 3 dny kvůli rozdílu "+lowerReccomendedAmount+ " CZK/EUR se nedoporučuje koupě" :
                                             ""}
-            {lower_recommended==="True"  ? "Rozdíl ceny za poslední 3 dny  kvůli rozdílu "+lowerReccomendedAmount+" EUR se doporučuje" :
+            {lower_recommended==="True"  ? "Rozdíl ceny za poslední 3 dny  kvůli rozdílu "+lowerReccomendedAmount+" CZK/EUR se doporučuje koupě" :
                                             ""}
             <br/>
             {average_recommended==="False"  ? "Kvůli zvýšení průměru za poslední 3 dny o "+average_recommendedAmount+ " % se nedoporučuje koupě" :
